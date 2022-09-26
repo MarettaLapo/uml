@@ -31,6 +31,8 @@ public class Herbivore extends Animal {
 	 * @param    meal
 	**/
 	public void nibble(Plant meal) {
-
+		double eaten = Math.min(Math.min(getNeed() * 0.1, meal.getSize() / 2), stillNeed());
+		eat(eaten);
+		meal.nibbledOn(eaten);
 	}
 }

@@ -27,18 +27,20 @@ public class Animal extends Organism {
 	**/
 	public Animal(double initRate, double initSize, double initNeed) {
 		super(initRate, initSize);
-		this.needEachWeek = initNeed;
+		needEachWeek = initNeed;
+		eatenThisWeek = 0;
 	}
 	
 	/**
 	 * Вызов функции из класса родителя. Проверяет достаточность съеденной пищи в текущей неделе. Если съеденной пищи недостаточно, то рыба  умирает.
 	**/
 	public void simulateWeek() {
-		if(needEachWeek > eatenThisWeek){
+		if(stillNeed() > 0){
 			death();
 		}
 		else{
 			eatenThisWeek = 0;
+			alterSize(getRate());
 		}
 	}
 	
