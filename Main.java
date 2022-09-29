@@ -66,11 +66,27 @@ public class Main {
 		//Создание популяции растений
 		for (i=0;i<MANY_WEEDS;i++)
 			weeds.add(new Plant(WEED_RATE, WEED_SIZE));
+
+		int fishMxSize = 0;
+		double weedsMx = 0;
+		ArrayList<Integer> a = new ArrayList<>(manyWeeks);
+		ArrayList<Double> b = new ArrayList<>(manyWeeks);
 	
 		//Моделирование жизни в пруду
 		for (i = 0; i < manyWeeks; i++){
 			pondWeek(fish, weeds);
-			System.out.println((i+1)+"\t"+fish.size() + "\t"+totalMass(weeds));
-		}
+            a.add(fish.size());
+            b.add(totalMass(weeds));
+            fishMxSize = Math.max(fishMxSize, fish.size());
+            weedsMx = Math.max(weedsMx, totalMass(weeds));
+        }
+        // for(i = 0; i < manyWeeks; i++){
+        //     System.out.println((double)a.get(i) / (double)fishMxSize + "\t"+ b.get(i) / weedsMx);
+        // }
+		for (i = 0; i < manyWeeks; i++)
+			System.out.println((double)a.get(i) / (double)fishMxSize);
+		System.out.println("-------");
+		for (i = 0; i < manyWeeks; i++)
+			System.out.println(b.get(i) / weedsMx);
 	}	
 }
